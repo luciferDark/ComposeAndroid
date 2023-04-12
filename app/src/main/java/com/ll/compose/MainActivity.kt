@@ -1,17 +1,18 @@
 package com.ll.compose
 
+import EditTextLearn
 import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.foundation.text.selection.SelectionContainer
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -43,7 +44,15 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background,
                     shape = MaterialTheme.shapes.large
                 ) {
-                    Greeting("Android")
+                    Column(
+                        modifier = Modifier.verticalScroll(
+                            state = rememberScrollState()
+                        )
+                    ){
+                        TextLearnning("Android")
+                        ButtonLearn()
+                        EditTextLearn()
+                    }
                 }
             }
         }
@@ -51,7 +60,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
+fun TextLearnning(name: String) {
     Column {
         Text(
             text = "Hello $name!",
@@ -76,11 +85,11 @@ fun Greeting(name: String) {
 
         val text1 = buildAnnotatedString {
             withStyle(style = SpanStyle(color = Color.Red, fontSize = 22.sp)){
-                append("你好：")
+                append("知道北京：")
             }
             append(",我是")
             withStyle(style = SpanStyle(color = Color.Blue, fontSize = 24.sp)){
-                append("北京")
+                append("洞拐")
             }
             append(",over！")
         }
@@ -96,7 +105,7 @@ fun Greeting(name: String) {
                 withStyle(style = SpanStyle(color = Color.Blue, fontSize = 24.sp)){
                     append("北京\n")
                 }
-                append("over！\n")
+                append("over！")
             }
         )
         ClickableText(
@@ -104,7 +113,7 @@ fun Greeting(name: String) {
             onClick = {
                 Log.d(TAG, "点击了文本，位置$it")
             })
-        SelectionContainer(modifier = Modifier.fillMaxSize()) {
+        SelectionContainer(modifier = Modifier.wrapContentSize()) {
             Column {
                 Text(text = "我是可选择的文本句子", fontSize = 20.sp)
                 Text(text = "我是可选择的文本句子", fontSize = 20.sp)
@@ -123,6 +132,6 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     ComposeAndroidTheme {
-        Greeting("Android")
+        TextLearnning("Android")
     }
 }
