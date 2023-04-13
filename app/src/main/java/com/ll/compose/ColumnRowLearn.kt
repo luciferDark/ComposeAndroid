@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.ll.compose.R
 
 @Composable
-fun ColumnRowShow() {
+fun ColumnRowLearn() {
     val aligns = arrayListOf<Alignment>(
         Alignment.TopStart, Alignment.TopCenter, Alignment.TopEnd,
         Alignment.CenterStart, Alignment.Center, Alignment.CenterEnd,
@@ -23,6 +23,8 @@ fun ColumnRowShow() {
     )
     val columNum = 15
     val rowNum = 20
+    val boxShape = RoundedCornerShape(60.dp, 0.dp, 25.dp, 0.dp)
+    val boxShape2 = RoundedCornerShape(25.dp)
     Column(
         verticalArrangement = Arrangement.spacedBy(10.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -34,13 +36,12 @@ fun ColumnRowShow() {
     ) {
         repeat(columNum) {
             Box(
-                modifier =
-                Modifier
-                    .background(color = Color.Red)
+                contentAlignment = aligns[it % aligns.size],
+                modifier = Modifier
+                    .background(color = Color.Red, shape = boxShape)
                     .height(100.dp)
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)),
-                contentAlignment = aligns[it % aligns.size],
+                    .clip(boxShape)
             ) {
                 Text(text = "100", modifier = Modifier.padding(10.dp))
             }
@@ -59,28 +60,18 @@ fun ColumnRowShow() {
             contentDescription = "",
             modifier = Modifier
                 .size(100.dp)
-                .shadow(
-                    elevation = 2.dp,
-                    shape = RoundedCornerShape(15.dp),
-//                    ambientColor = Color.Blue,
-//                    spotColor = Color.Yellow,
-                ),
+                .clip(RoundedCornerShape(15.dp, 0.dp, 25.dp, 0.dp)),//圆角
             contentScale = ContentScale.FillHeight
         )
         repeat(rowNum) {
             Box(
-                modifier =
-                Modifier
-                    .background(color = Color.Red)
-                    .size(100.dp, 200.dp)
-                    .shadow(
-                        elevation = 0.dp,
-                        shape = RoundedCornerShape(6.dp),
-//                        ambientColor = Color.Red,
-                    ),
                 contentAlignment = aligns[it % aligns.size],
+                modifier = Modifier
+                    .background(color = Color.Red, shape = boxShape2)
+                    .size(100.dp, 200.dp)
+                    .clip(shape = boxShape2)
             ) {
-                Text(text = "$it")
+                Text(text = "$it", modifier = Modifier.padding(20.dp))
             }
         }
     }
@@ -88,6 +79,6 @@ fun ColumnRowShow() {
 
 @Preview
 @Composable
-fun ColumnRowShowPre() {
-    ColumnRowShow()
+fun ColumnRowLearnPre() {
+    ColumnRowLearn()
 }

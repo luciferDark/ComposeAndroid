@@ -1,14 +1,12 @@
 package com.ll.compose
 
+import ColumnRowLearn
 import EditTextLearn
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.selection.DisableSelection
@@ -28,7 +26,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ll.compose.ui.theme.ComposeAndroidTheme
 
@@ -52,6 +49,7 @@ class MainActivity : ComponentActivity() {
                         TextLearnning("Android")
                         ButtonLearn()
                         EditTextLearn()
+                        ColumnRowLearn()
                     }
                 }
             }

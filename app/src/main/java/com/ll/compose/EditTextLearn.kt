@@ -15,6 +15,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun EditTextLearn() {
@@ -27,9 +28,9 @@ fun EditTextLearn() {
                 textStr = it
             },
             label = {
-                Text(text = "输入提示：")
+                Text(text = "输入提示：", fontSize = 8.sp)
             },
-            textStyle = TextStyle(color = Color.Red, fontWeight = FontWeight.Bold),//修改文本格式
+            textStyle = TextStyle(color = Color.Red, fontWeight = FontWeight.Bold, fontSize = 16.sp),//修改文本格式
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Characters,//字母大写
                 keyboardType = KeyboardType.Text,//文本格式
@@ -51,7 +52,7 @@ fun EditTextLearn() {
                 textStr = it
             },
             label = {
-                Text(text = "输入提示1：")
+                Text(text = "输入提示1：", fontSize = 8.sp)
             }
         )
         BasicTextField(value = textStr,
