@@ -46,10 +46,11 @@ class MainActivity : ComponentActivity() {
                             state = rememberScrollState()
                         )
                     ){
-                        TextLearnning("Android")
-                        ButtonLearn()
-                        EditTextLearn()
+                        CanvasLearn()
                         ColumnRowLearn()
+                        EditTextLearn()
+                        ButtonLearn()
+                        TextLearnning("Android")
                     }
                 }
             }
