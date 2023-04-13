@@ -6,8 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.selection.DisableSelection
@@ -38,7 +39,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeAndroidTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background,
@@ -61,7 +61,11 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun TextLearnning(name: String) {
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+    ) {
         Text(
             text = "Hello $name!",
             color = Color.Red,
@@ -85,11 +89,11 @@ fun TextLearnning(name: String) {
 
         val text1 = buildAnnotatedString {
             withStyle(style = SpanStyle(color = Color.Red, fontSize = 22.sp)){
-                append("知道北京：")
+                append("你好：")
             }
             append(",我是")
             withStyle(style = SpanStyle(color = Color.Blue, fontSize = 24.sp)){
-                append("洞拐")
+                append("北京")
             }
             append(",over！")
         }
@@ -111,9 +115,10 @@ fun TextLearnning(name: String) {
         ClickableText(
             text = text1,
             onClick = {
-                Log.d(TAG, "点击了文本，位置$it")
-            })
-        SelectionContainer(modifier = Modifier.wrapContentSize()) {
+                Log.d(TAG, "点击了文本，位置$it，字符${text1[it]}")
+            },
+        )
+        SelectionContainer{
             Column {
                 Text(text = "我是可选择的文本句子", fontSize = 20.sp)
                 Text(text = "我是可选择的文本句子", fontSize = 20.sp)
